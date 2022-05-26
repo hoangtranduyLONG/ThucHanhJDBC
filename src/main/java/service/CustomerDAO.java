@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerDAO implements ICustomerDAO {
-    List<Customer> customers = new ArrayList<>();
+//    List<Customer> customers;
 
     public CustomerDAO() {
     }
@@ -28,25 +28,18 @@ public class CustomerDAO implements ICustomerDAO {
     }
 
     @Override
-    public List<Customer> insert(Customer customer) throws SQLException {
+    public void insert(Customer customer) throws SQLException {
         try (Connection connection = getConnection();
 
-             PreparedStatement preparedStatement = connection.prepareStatement("select* from customer");) {
-            System.out.println(preparedStatement);
-            // Step 3: Execute the query or update query
-            ResultSet rs = preparedStatement.executeQuery();
-
-            // Step 4: Process the ResultSet object.
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String name = rs.getString("name");
-                int email = Integer.parseInt(rs.getString("age"));
-                customers.add(new Customer(id, name, email));
-            }
+             PreparedStatement preparedStatement = connection.prepareStatement("insert into customer values (?,?,?)");) {
+            preparedStatement.setInt(1, customer.getId());
+            preparedStatement.setString(2, customer.getName());
+            preparedStatement.setInt(3, customer.getAge());
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
 
         }
-        return null;
+
     }
 
     @Override
@@ -56,11 +49,11 @@ public class CustomerDAO implements ICustomerDAO {
 
     @Override
     public List<Customer> findAll() {
-
+        List<Customer> customers = new ArrayList<>();
         try (Connection connection = getConnection();
 
-             PreparedStatement preparedStatement = connection.prepareStatement("select* from customer");) {
-            System.out.println(preparedStatement);
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from customer")) {
+//            System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -68,8 +61,8 @@ public class CustomerDAO implements ICustomerDAO {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                int email = Integer.parseInt(rs.getString("age"));
-                customers.add(new Customer(id, name, email));
+                int age = rs.getInt("age");
+                customers.add(new Customer(id, name, age));
             }
         } catch (SQLException e) {
 

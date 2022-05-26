@@ -11,6 +11,6 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+  <a href="/customer/list.jsp"></a>
   </body>
 </html>

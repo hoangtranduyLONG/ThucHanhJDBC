@@ -11,8 +11,10 @@
 <head>
     <title>Title</title>
 </head>
-<body>
+<body id="body">
+
 <h1>Đây là danh sách</h1>
+
 <a href="/customers?act=create">Tạo mới</a>
 <c:forEach var="cus" items="${dskh}">
 <h2>${cus.id},${cus.name},${cus.age}</h2>

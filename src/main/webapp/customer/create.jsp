@@ -11,9 +11,10 @@
     <title>Title</title>
 </head>
 <body>
-<form>
-<input type="text"name="name">
-    <input type="text"name="age">
+<form method="post">
+    <input type="number" name="id">
+    <input type="text"name="name">
+    <input type="number"name="age">
     <button>Tạo</button>
 </form>
 </body>

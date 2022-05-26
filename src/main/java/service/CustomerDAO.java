@@ -71,6 +71,16 @@ public class CustomerDAO implements ICustomerDAO {
     }
 
     @Override
+    public List<Customer> findByName(String Name) {
+        return null;
+    }
+
+    @Override
+    public List<Customer> findAllOrderByAge() {
+        return null;
+    }
+
+    @Override
     public boolean delete(int id) throws SQLException {
         return false;
     }

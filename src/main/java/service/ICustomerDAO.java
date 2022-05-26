@@ -6,13 +6,18 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface ICustomerDAO {
+
     public void insert(Customer customer) throws SQLException;
 
     public Customer findByID(int id);
 
     public List<Customer> findAll();
 
-    public boolean delete(int id) throws SQLException;
+    public List<Customer> findByName(String Name);
 
-    public boolean updateUser(Customer customer) throws SQLException;
+    public  List<Customer> findAllOrderByAge();
+
+    public  boolean delete(int id) throws SQLException;
+
+    public  boolean updateUser(Customer customer) throws SQLException;
 }

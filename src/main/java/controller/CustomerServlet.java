@@ -28,11 +28,25 @@ public class CustomerServlet extends HttpServlet {
             case "create":
                 showCreatForm(request, response);
                 break;
+            case "edit":
+                showEditForm(request, response);
+                break;
             default:
                 showList(request, response);
         }
     }
 
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("customer/edit.jsp");
+        int id = Integer.parseInt(request.getParameter("id"));
+        Customer customer = customerDAO.findIndexByName(id);
+        request.setAttribute("customer", customer);
+//        int age = Integer.parseInt(request.getParameter("age"));
+//        String name = request.getParameter("name");
+//        customerDAO.update(new Customer(id, name, age));
+        requestDispatcher.forward(request, response);
+//        response.sendRedirect("/customers");
+    }
     private void showCreatForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("customer/create.jsp");
         requestDispatcher.forward(request, response);
@@ -46,7 +60,7 @@ public class CustomerServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
-    @Override
+      @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("act");
         if (action == null)
@@ -62,7 +76,14 @@ public class CustomerServlet extends HttpServlet {
                     e.printStackTrace();
                 }
                 break;
+            case "edit":
+                editCustomer(request, response);
+                break;
         }
+    }
+
+    private void editCustomer(HttpServletRequest request, HttpServletResponse response) {
+
     }
 
 

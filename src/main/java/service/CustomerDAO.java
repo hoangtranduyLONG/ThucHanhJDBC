@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerDAO implements ICustomerDAO {
-//    List<Customer> customers;
+   List<Customer> customers;
 
     public CustomerDAO() {
     }
@@ -76,6 +76,18 @@ public class CustomerDAO implements ICustomerDAO {
     }
 
     @Override
+    public Customer findIndexByName(int id) {
+        List<Customer> customers = findAll();
+        for (Customer customer:customers
+             ) {
+           if(customer.getId()==id) {
+               return customer;
+           }
+
+        }
+        return null;
+    }
+
     public List<Customer> findAllOrderByAge() {
         return null;
     }
@@ -87,6 +99,13 @@ public class CustomerDAO implements ICustomerDAO {
 
     @Override
     public boolean updateUser(Customer customer) throws SQLException {
+
         return false;
+    }
+
+    public void deleteCustomer(int id) {
+    }
+
+    public void update(Customer customer) {
     }
 }

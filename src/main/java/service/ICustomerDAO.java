@@ -15,7 +15,7 @@ public interface ICustomerDAO {
 
     public List<Customer> findByName(String Name);
 
-    public  List<Customer> findAllOrderByAge();
+    public Customer findIndexByName(int id);
 
     public  boolean delete(int id) throws SQLException;
 
